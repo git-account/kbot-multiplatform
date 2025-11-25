@@ -1,5 +1,5 @@
 
-KBOT modified for cross-platform
+KBOT modified for cross-platform.
 NO Buildx, only build
 
 usage:
