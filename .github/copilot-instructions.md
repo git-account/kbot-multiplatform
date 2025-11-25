@@ -3,7 +3,7 @@
 This repository is a small Go CLI + Telegram bot. The goal is to give AI coding agents the minimal, actionable context to be productive.
 
 Project overview
-- **Module path**: `github.com/git-account/kbot` (see `go.mod`).
+- **Module path**: `github.com/git-account/kbot-multiplatform` (see `go.mod`).
 - **Entry point**: `main.go` calls `cmd.Execute()` (Cobra-based CLI in `cmd/`).
 - **Commands**: `cmd/` contains Cobra commands:
   - `cmd/root.go` — root command and `Execute()` function.
@@ -12,7 +12,7 @@ Project overview
 
 Build and Docker
 - Default local build: `make build`. Important details:
-  - `Makefile` computes `VERSION` using Git tags/commit and injects it with `-ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"`.
+  - `Makefile` computes `VERSION` using Git tags/commit and injects it with `-ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"`.
   - The Makefile sets `CGO_ENABLED=0 GOOS=linux GOARCH=$(dpkg --print-architecture)` so builds are static linux binaries.
 +- Docker: `Dockerfile` uses a multi-stage build and accepts the following build-args which let you cross-compile for different OS/architectures:
 +  - `TARGETOS` (default: `linux`) — GOOS value to build a binary for
@@ -54,6 +54,6 @@ Files that are authoritative sources of truth
 
 If you need to change the Docker build or the Makefile
 - Prefer updating `go.mod` and the Dockerfile together so the builder Go version matches the module Go version.
-- Fix ldflags quoting in `Makefile` if you touch version injection; use `-ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"`.
+- Fix ldflags quoting in `Makefile` if you touch version injection; use `-ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"`.
 
 If anything here is unclear or you'd like a different granularity (more examples, CI notes, or debugging commands), tell me which sections to expand.

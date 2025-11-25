@@ -38,20 +38,20 @@ get:
 	go mod download
 
 build: format get
-	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"
+	CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -v -o kbot -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"
 
 # Build for specific platforms
 linux: format get
-	CGO_ENABLED=0 GOOS=${LINUX_OS} GOARCH=${LINUX_ARCH} go build -v -o kbot-${LINUX_OS}-${LINUX_ARCH} -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"
+	CGO_ENABLED=0 GOOS=${LINUX_OS} GOARCH=${LINUX_ARCH} go build -v -o kbot-${LINUX_OS}-${LINUX_ARCH} -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"
 
 arm: format get
-	CGO_ENABLED=0 GOOS=${ARM_OS} GOARCH=${ARM_ARCH} go build -v -o kbot-${ARM_OS}-${ARM_ARCH} -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"
+	CGO_ENABLED=0 GOOS=${ARM_OS} GOARCH=${ARM_ARCH} go build -v -o kbot-${ARM_OS}-${ARM_ARCH} -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"
 
 macos: format get
-	CGO_ENABLED=0 GOOS=${MACOS_OS} GOARCH=${MACOS_ARCH} go build -v -o kbot-${MACOS_OS}-${MACOS_ARCH} -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"
+	CGO_ENABLED=0 GOOS=${MACOS_OS} GOARCH=${MACOS_ARCH} go build -v -o kbot-${MACOS_OS}-${MACOS_ARCH} -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"
 
 windows: format get
-	CGO_ENABLED=0 GOOS=${WINDOWS_OS} GOARCH=${WINDOWS_ARCH} go build -v -o kbot-${WINDOWS_OS}-${WINDOWS_ARCH}.exe -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}"
+	CGO_ENABLED=0 GOOS=${WINDOWS_OS} GOARCH=${WINDOWS_ARCH} go build -v -o kbot-${WINDOWS_OS}-${WINDOWS_ARCH}.exe -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}"
 
 all: linux arm macos windows
 	@echo "Built all platforms"

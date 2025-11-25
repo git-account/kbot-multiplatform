@@ -1,4 +1,4 @@
-module github.com/git-account/kbot
+module github.com/git-account/kbot-multiplatform
 
 go 1.24
 

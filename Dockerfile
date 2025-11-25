@@ -18,7 +18,7 @@ ARG TARGETOS
 ARG TARGETARCH
 ARG VERSION
 RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
-	go build -v -o /kbot -ldflags "-X=github.com/git-account/kbot/cmd.appVersion=${VERSION}" .
+	go build -v -o /kbot -ldflags "-X=github.com/git-account/kbot-multiplatform/cmd.appVersion=${VERSION}" .
 
 FROM ${BASE_IMAGE} as final
 WORKDIR /
