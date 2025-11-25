@@ -1,6 +1,8 @@
-# kbot
-devops application from scratch
-Usage:
-./kbot start
-Link:
-http://t.me/ivanryzhkov_bot
+
+KBOT modified for cross-platform
+NO Buildx, only build
+usage:
+make linux
+make arm
+make macos
+make windows

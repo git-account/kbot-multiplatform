@@ -23,4 +23,5 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
 FROM ${BASE_IMAGE} as final
 WORKDIR /
 COPY --from=builder /kbot /kbot
+COPY --from=alpine:latest /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 ENTRYPOINT ["/kbot"]

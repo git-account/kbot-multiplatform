@@ -26,13 +26,7 @@ WINDOWS_ARCH=amd64
 format: 
 	gofmt -s -w ./
 
-.PHONY: format lint test get build linux arm macos windows all image image-all image-local push clean
-
-lint:
-	golint
-
-test:
-	go test -v
+.PHONY: format build get linux arm macos windows all image push clean
 
 get:
 	go mod download
@@ -64,21 +58,6 @@ image:
 		--build-arg TARGETOS=${TARGETOS} --build-arg TARGETARCH=${TARGETARCH} --build-arg VERSION=${VERSION} \
 		--build-arg BUILDER_IMAGE=${BUILDER_IMAGE} --build-arg BASE_IMAGE=${BASE_IMAGE} \
 		-t ${IMAGE_TAG} .
-
-image-local:
-	# Build a single platform image locally using build args (no need to set --platform)
-	# Note: building for a different platform without QEMU may produce an image that won't run locally
-	docker build \
-		--build-arg TARGETOS=${TARGETOS} --build-arg TARGETARCH=${TARGETARCH} --build-arg VERSION=${VERSION} \
-		--build-arg BUILDER_IMAGE=${BUILDER_IMAGE} --build-arg BASE_IMAGE=${BASE_IMAGE} \
-		-t ${IMAGE_TAG} .
-
-image-all:
-	# Build multiple single-arch images using docker build (no manifests, not multi-arch image). This loops over common platforms.
-	$(MAKE) image TARGETOS=linux TARGETARCH=amd64 BUILDER_IMAGE=${BUILDER_IMAGE} BASE_IMAGE=alpine
-	$(MAKE) image TARGETOS=linux TARGETARCH=arm64 BUILDER_IMAGE=${BUILDER_IMAGE} BASE_IMAGE=alpine
-	# Windows images will need a Windows base image and a Windows builder to create a runnable image from linux host.
-	$(MAKE) image TARGETOS=windows TARGETARCH=amd64 BUILDER_IMAGE=${BUILDER_IMAGE} BASE_IMAGE=mcr.microsoft.com/windows/nanoserver:1809
 
 push:
 	docker push ${IMAGE_TAG}
