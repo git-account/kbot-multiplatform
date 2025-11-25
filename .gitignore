@@ -1,0 +1,13 @@
+# Ignore locally produced binaries and artifacts
+kbot
+kbot-*
+*.exe
+dist/
+
+# OS/editor files
+.DS_Store
+*.swp
+*.swo
+*.log
+node_modules/
+__pycache__/
